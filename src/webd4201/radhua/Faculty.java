@@ -3,7 +3,7 @@ package webd4201.radhua;
 /**
  * This class represents the Faculty class
  * @author Arsalan Arif Radhu
- * @version 1.0
+ * @version 2.0
  * @since 1.0
  */
 

@@ -1,3 +1,10 @@
+/*
+ * This class represents the StudentDA Class
+ * @author Arsalan Arif Radhu
+ * @version 1.0
+ * @since 1.0
+ */
+
 package webd4201.radhua;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
