@@ -7,6 +7,9 @@ package webd4201.radhua;
  * @since 1.0
  */
 
+import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Date;
 
 public class Faculty extends User {
@@ -187,5 +190,59 @@ public class Faculty extends User {
         return firstPart + "\n" + schoolDescription + " (" + schoolCode + " )"
                 + "\nOffice: " + office
                 + "\n" + PHONE_NUMBER + " x" + extension;
+    }
+
+    /**
+     * Method that connects the DB
+     * @param c     The connection String
+     */
+    public static void initialize(Connection c)
+    {
+        FacultyDA.initialize(c);
+    }
+
+    /**
+     * Method to terminate the connection to the DB
+     */
+    public static void terminate()
+    {
+        FacultyDA.terminate();
+    }
+
+    /**
+     * Method to retrieve a student from the DB
+     * @param id        The id being searched for in the DB
+     * @return Faculty  A record from the DB
+     * @throws NotFoundException  throws an exception if the user cannot be found, or other implicit data errors
+     */
+    public static Faculty retrieve(long id) throws NotFoundException, SQLException, InvalidUserDataException, InvalidIdException, InvalidNameException, InvalidPasswordException {
+        return FacultyDA.retrieve(id);
+    }
+
+    /**
+     * Creates a new Student Object
+     * @return aFaculty   Object containing the relevant data
+     * @throws InvalidUserDataException  throws an exception if the user data entry is invalid
+     */
+    public boolean create() throws InvalidUserDataException, DuplicateException, InvalidIdException, InvalidNameException, InvalidPasswordException, SQLException, NoSuchAlgorithmException {
+        return FacultyDA.create(this);
+    }
+
+    /**
+     * Updates an existing record
+     * @return          number of rows affected
+     * @throws NotFoundException    throws an exception if the user cannot be found
+     */
+    public  int update() throws NotFoundException, InvalidUserDataException, InvalidIdException, InvalidNameException, InvalidPasswordException, SQLException {
+        return FacultyDA.update(this);
+    }
+
+    /**
+     * Deletes an existing record
+     * @return          number of rows affected
+     * @throws NotFoundException   throws an exception if the user cannot be found
+     */
+    public int delete() throws NotFoundException, InvalidUserDataException, InvalidIdException, InvalidNameException, InvalidPasswordException, SQLException {
+        return  FacultyDA.delete(this);
     }
 }

@@ -7,6 +7,8 @@ package webd4201.radhua;
  * @since 1.0
  */
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -410,6 +412,37 @@ public class User implements CollegeInterface{
         }
 
         return isValid;
+    }
+
+    public static String hashPassword(String password)
+    {
+        String generatedPassword = null;
+        try {
+            // Create MessageDigest instance for MD5
+            MessageDigest md = MessageDigest.getInstance("SHA1");
+
+            //Add password bytes to digest
+            md.update(password.getBytes());
+
+            //Get the hash's bytes
+            byte[] bytes = md.digest();
+
+            //This bytes[] has bytes in decimal format;
+            //Convert it to hexadecimal format
+            StringBuilder sb = new StringBuilder();
+            for(int i=0; i< bytes.length ;i++)
+            {
+                sb.append(String.format("%02x", bytes[i]));
+            }
+            //Get complete hashed password in hex format
+            generatedPassword = sb.toString();
+        }
+        catch ( NoSuchAlgorithmException e)
+        {
+            e.printStackTrace();
+        }
+        //  System.out.println(generatedPassword);
+        return generatedPassword;
     }
 
 
